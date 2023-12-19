@@ -189,7 +189,7 @@ public class main {
 
 ===============
 
-    package sae;
+package sae;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -209,6 +209,7 @@ public class main {
             switch (choixGlobal) {
                 case 1:
                     chargerFichier();
+                    running = false;
                     break;
                 case 2:
                     afficherDonnees();
@@ -250,14 +251,14 @@ public class main {
     }
 
     public static void chargerFichier() throws IOException {
-    	Scanner scanner = new Scanner(System.in);
-        boolean running = true;
+    	Scanner scannerFichier = new Scanner(System.in);
+        boolean runningFichier = true;
 
         BufferedReader tsvReader = new BufferedReader(new FileReader("IMDbmoviesFULL.tsv"));
         String row=new String();
     	row=tsvReader.readLine();
         
-        while (running) {
+        while (runningFichier) {
         	System.out.println("Opérations à effectuer : (Charger les données)");
             System.out.println("1. Charger le fichier complet");
             System.out.println("2. Charger le fichier avec 40000 films");
@@ -266,35 +267,49 @@ public class main {
             System.out.println("5. Charger le fichier avec 100 films");
             System.out.println("6. Quitter");
             System.out.print("Faites votre choix : ");
-            int choixGlobal = scanner.nextInt();
+            int choixGlobal = scannerFichier.nextInt();
 
             switch (choixGlobal) {
                 case 1:
                 	tsvReader = new BufferedReader(new FileReader("IMDbmoviesFULL.tsv"));
+                	System.out.println("-===== * =====-");
                 	System.out.println("Fichier chargé : Fichier complet");
+                	System.out.println("-===== * =====-");
                     break;
                 case 2:
                 	tsvReader = new BufferedReader(new FileReader("IMDbmoviesCUT40000.tsv"));
+                	System.out.println("-===== * =====-");
                 	System.out.println("Fichier chargé : Fichier avec 40000 films");
+                	System.out.println("-===== * =====-");
                     break;
                 case 3:
                 	tsvReader = new BufferedReader(new FileReader("IMDbmoviesCUT10000.tsv"));
+                	System.out.println("-===== * =====-");
+                	System.out.println("Fichier chargé : Fichier avec 10000 films");
+                	System.out.println("-===== * =====-");
                     break;
                 case 4:
                 	tsvReader = new BufferedReader(new FileReader("IMDbmoviesCUT1000.tsv"));
+                	System.out.println("-===== * =====-");
+                	System.out.println("Fichier chargé : Fichier avec 1000 films");
+                	System.out.println("-===== * =====-");
                     break;
                 case 5:
                 	tsvReader = new BufferedReader(new FileReader("IMDbmoviesCUT100.tsv"));
+                	System.out.println("-===== * =====-");
+                	System.out.println("Fichier chargé : Fichier avec 100 films");
+                	System.out.println("-===== * =====-");
                     break;
                 case 6:
-                    running = false;
+                	runningFichier = false;
+                	main(null);
                     break;
                 default:
                     System.out.println("Choix invalide. Veuillez choisir une option valide.");
                     break;
             }
         }
-        scanner.close();
+        scannerFichier.close();
     }
 
     public static void afficherDonnees() {
