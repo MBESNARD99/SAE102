@@ -5,17 +5,17 @@ import java.util.Comparator;
 //classe pour stocker les informations sur un jeu vidéo
 public class Film {
 	public String title;
-	public String releaseYear;
+	public int releaseYear;
 	public String genres;
-	public String duration;
+	public int duration;
 	public String country;
 	public String language;
 	public String director;
 	public String writer;
 	public String actors;
 	public String description;
-	public String viewerVotes;
-	public String averageVotes;
+	public int viewerVotes;
+	public float averageVotes;
 	
 	static public Comparator<Film> compareTitle = new Comparator <Film>() {
 
@@ -35,17 +35,17 @@ public class Film {
 	Film(String t, String r, String g, String d, String c, String l, String di, String w, String a, String de, String vv, String av)
 	{
 		title=t;
-		releaseYear=r;
+		releaseYear=Integer.parseInt(r);
 		genres = g;
-		duration = d;
+		duration = Integer.parseInt(d);
 		country = c;
 		language = l;
 		director = di;
 		writer = w;
 		actors = a;
 		description = de;
-		viewerVotes = vv;
-		averageVotes = av;
+		viewerVotes = Integer.parseInt(vv);
+		averageVotes = Float.parseFloat(av);
 	}
 	
 	// fonction utile pour l'affichage
