@@ -120,46 +120,20 @@ public class InterfaceV2 {
 			}
 		while (c == 0 ) {	
 			System.out.println("============================================");	
-			System.out.println("choisissez le mode de votre recherche : ");
+			System.out.println("Que voulez vous faire ? ");
 			System.out.println("");
 			System.out.println("0. Affichage des données");
 			System.out.println("1. Filtre");
 			System.out.println("2. Tris");
 			System.out.println("3. Recherche");
 			System.out.println("4. Suppression");
-			System.out.println("5. Sauvegarde");
-			System.out.println("6. Retour");
+			System.out.println("5. Retour");
 			x = Clavier.lireInt();
 			if (x == 0) {
 				System.out.println("==============================");	
 				System.out.println("Vous avez choisi l'affichage des données");
-				System.out.println("");
-				System.out.println("1. Afficher un film sur deux");
-				System.out.println("2. Afficher un film sur dix");	
-				System.out.println("3. Afficher un film sur cent");
-				System.out.println("4. Retour");
-				z=Clavier.lireInt();
-				if (z==1) {
-					System.out.println("==============================");	
-					System.out.println("1. Afficher un film sur deux");
-					c=1;
-					main.Affichage(cinema);
+				main.Affichage(cinema);
 				}
-				if (z==2) {
-					System.out.println("==============================");	
-					System.out.println("2. Afficher un film sur dix");
-					c=1;
-				}
-				if (z==3) {
-					System.out.println("==============================");	
-					System.out.println("3. Afficher un film sur cent");
-					c=1;
-				}
-				if (z==4) {
-					System.out.println("==============================");	
-					System.out.println("3. Retour");
-				}
-			}
 			if (x == 1) {
 				System.out.println("==============================");	
 				System.out.println("Vous avez choisi le Filtre");
@@ -312,6 +286,7 @@ public class InterfaceV2 {
 				if (z==2) {
 					System.out.println("==============================");	
 					System.out.println("2. tri fusion selectionné");
+					//main.triFusion(cinema, 1, 100);
 					c=1;
 				}
 				if (z==3) {
@@ -397,7 +372,6 @@ public class InterfaceV2 {
 					System.out.println("Que voulez-vous rechercher ?");
 					String recherche = Clavier.lireLigne();
 					main.rechercheLineaire(recherche, cinema);
-					main.Affichage(cinema);
 					c=1;
 				}
 				if (z==2) {
@@ -406,7 +380,6 @@ public class InterfaceV2 {
 					System.out.println("Que voulez-vous rechercher ?");
 					String recherche = Clavier.lireLigne();
 					main.rechercheDichotomique(recherche, cinema);
-					main.Affichage(cinema);
 					c=1;
 				}
 				if (z==3) {
@@ -423,6 +396,7 @@ public class InterfaceV2 {
 				if (z==1) {
 					System.out.println("==============================");	
 					System.out.println("1. Suppression faite");
+					main.Suppression(cinema);
 					c=1;
 				}
 				if (z==2) {
@@ -431,29 +405,6 @@ public class InterfaceV2 {
 				}
 			}
 			if (x == 5) {
-				System.out.println("==============================");	
-				System.out.println("Vous avez choisi la Sauvegarde");
-				System.out.println("");
-				System.out.println("1. Sauvegarde en mode texte");
-				System.out.println("2. Sauvegarde en mode binaire");
-				System.out.println("3. Retour");
-				z=Clavier.lireInt();
-				if (z==1) {
-					System.out.println("==============================");	
-					System.out.println("1. Sauvegarde en mode texte selectionné");
-					c=1;
-				}
-				if (z==2) {
-					System.out.println("==============================");	
-					System.out.println("2. Sauvegarde en mode binaire selectionné");
-					c=1;
-				}
-				if (z==3) {
-					System.out.println("==============================");	
-					System.out.println("3. Retour");
-				}
-			}
-			if (x == 6) {
 				System.out.println("==============================");	
 				System.out.println("retour");
 				c=1;
