@@ -47,6 +47,33 @@ public class main {
 		//rechercheLineaire("Talla",cinema);
 	}
 	
+	public static List<Film> Linked(String choix) throws IOException{
+		BufferedReader tsvReader = new BufferedReader(new FileReader(choix));
+		String row=new String();
+		row=tsvReader.readLine();
+
+		List<Film> cinema= new LinkedList<Film>();
+
+		while ((row = tsvReader.readLine()) != null) {
+			String[] data = row.split("\t");
+			cinema.add(new Film(data[1], data[3], data[5], data[6], data[7], data[8], data[9], data[10], data[12], data[13], data[15], data[14]));
+		}
+		return cinema;
+	}
+	public static List<Film> Array(String choix) throws IOException{
+		BufferedReader tsvReader = new BufferedReader(new FileReader(choix));
+		String row=new String();
+		row=tsvReader.readLine();
+
+		List<Film> cinemaArray= new LinkedList<Film>();
+
+		while ((row = tsvReader.readLine()) != null) {
+			String[] data = row.split("\t");
+			cinemaArray.add(new Film(data[1], data[3], data[5], data[6], data[7], data[8], data[9], data[10], data[12], data[13], data[15], data[14]));
+		}
+		return cinemaArray;
+	}
+	
 	public static void Affichage(List<Film> list) {
 
 	    Iterator<Film> it = list.iterator();
@@ -61,13 +88,13 @@ public class main {
 
 	    ListIterator<Film> iterator = list.listIterator();
 
-	    // Tant que la liste n'a pas été parcourue entièrement
+	    // Tant que la liste n'a pas Ã©tÃ© parcourue entiÃ¨rement
 	    while (iterator.hasNext()) {
-	        Film actuel = iterator.next();                  // On récupère l'élément actuel
-	        int minIndex = iterator.previousIndex();            // On initialise l'index du minimum à l'index actuel
-	        Film min = actuel;                              // On initialise le minimum à l'élément actuel
+	        Film actuel = iterator.next();                  // On rÃ©cupÃ¨re l'Ã©lÃ©ment actuel
+	        int minIndex = iterator.previousIndex();            // On initialise l'index du minimum Ã  l'index actuel
+	        Film min = actuel;                              // On initialise le minimum Ã  l'Ã©lÃ©ment actuel
 
-	        // On parcourt la liste à partir de l'élément suivant
+	        // On parcourt la liste Ã  partir de l'Ã©lÃ©ment suivant
 	        ListIterator<Film> iterator2 = list.listIterator(minIndex);
 
 	        while (iterator2.hasNext()) {
@@ -75,20 +102,72 @@ public class main {
 	            Film actualFilm = iterator2.next();
 	            int index = iterator2.previousIndex();
 
-	            // Si la valeur actuelle est plus petite que la valeur minimale, on met à jour le minimum
+	            // Si la valeur actuelle est plus petite que la valeur minimale, on met Ã  jour le minimum
 	            if (actualFilm.viewerVotes < min.viewerVotes) {
 	                minIndex = index;
 	                min = actualFilm;
 	            }
 	        }
 
-	        // On échange le minimum avec l'élément actuel
+	        // On Ã©change le minimum avec l'Ã©lÃ©ment actuel
 	        iterator.set(min);
 	        list.set(minIndex, actuel);
 	    }
 
 	}
 
+	public static void triFusion(List<Film> list, int g, int d){
+
+        if (g < d) {
+            int m = ((d - g) / 2) + g;
+            triFusion(list, g, m);
+            triFusion(list, m + 1, d);
+            fusionner(list, g, m, d);
+        }
+
+    }
+	
+	public static void fusionner(List<Film> list, int g, int m, int d) {
+
+        Film[] result = new Film[d - g + 1];
+
+        int pivotGauche = g;
+        int pivotDroite = m + 1;
+        int k = 0;
+
+        while (pivotGauche <= m && pivotDroite <= d) {
+
+            if (list.get(pivotGauche).averageVotes < list.get(pivotDroite).averageVotes) {
+                result[k] = list.get(pivotGauche);
+                pivotGauche++;
+            } else {
+                result[k] = list.get(pivotDroite);
+                pivotDroite++;
+            }
+
+            k++;
+
+        }
+
+        while (pivotGauche <= m) {
+            result[k] = list.get(pivotGauche);
+            pivotGauche++;
+            k++;
+        }
+
+        while (pivotDroite <= d) {
+            result[k] = list.get(pivotDroite);
+            pivotDroite++;
+            k++;
+        }
+
+        //Transfert du tampon
+        for (int i = 0; i < result.length; i++) {
+            list.set(i + g, result[i]);
+        }
+
+    }
+	
 	
 	public static void Filtre_Titre(List<Film> list,String t) {
 		Iterator<Film> it = list.iterator();
@@ -296,19 +375,19 @@ public class main {
             int comparison = currentFilm.title.toLowerCase().compareTo(value);
 
             if (comparison < 0) {
-                // L'élément se situe plus bas
+                // L'Ã©lÃ©ment se situe plus bas
                 indexBas = indexMilieu + 1;
             } else if (comparison > 0) {
-                // L'élément se situe plus haut
+                // L'Ã©lÃ©ment se situe plus haut
                 indexHaut = indexMilieu - 1;
             } else {
-                // Correspondance trouvée
+                // Correspondance trouvÃ©e
                 System.out.println(currentFilm.toString());
                 return;
             }
         }
 
-        //Aucun film n'a été trouver
+        //Aucun film n'a Ã©tÃ© trouver
         System.out.println("Aucun film ne correspond");
 
     }
@@ -325,7 +404,7 @@ public class main {
             }
         }
 
-        //Aucun film n'a été trouver
+        //Aucun film n'a Ã©tÃ© trouver
         System.out.println("Aucun film ne correspond");
 
     }
