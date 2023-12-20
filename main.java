@@ -302,6 +302,17 @@ public class main {
 	    }
 	  }
 	
+	public static void Filtre_Java_Titre(List<Film> list, String t) {
+		list.removeIf(f -> !f.getTitre().contains(t));
+	}
+	
+	public static void Suppression(List<Film> list) {
+		Iterator<Film> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			iterator.remove();
+		}
+	}
+	
 	
 	public static void triJava_Annee(List<Film> list) {
 		Comparator<Film> comparator = null;
